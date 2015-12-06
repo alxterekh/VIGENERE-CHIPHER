@@ -36,19 +36,12 @@ string Vigenere:: encrypt(string text)
         {
             character += 'A' - 'a';
         }
-        else if((character < 'A' || character > 'Z') && character != ' ')
+        else if(character < 'A' || character > 'Z')
         {
             continue;
         }
-        if (character == ' ')
-        {
-            encryptedString += character;
-        }
-        else
-        {
-            encryptedString += (character + key[numberOfCharacterInKey] - 2*'A') % 26 + 'A';
-            numberOfCharacterInKey = (numberOfCharacterInKey + 1) % key.length();
-        }
+        encryptedString += (character + key[numberOfCharacterInKey] - 2*'A') % 26 + 'A';
+        numberOfCharacterInKey = (numberOfCharacterInKey + 1) % key.length();
     }
     
     return encryptedString;
@@ -67,19 +60,12 @@ string Vigenere:: decrypt(string text)
         {
             character += 'A' - 'a';
         }
-        else if((character < 'A' || character > 'Z') && character != ' ')
+        else if(character < 'A' || character > 'Z')
         {
             continue;
         }
-        if (character == ' ')
-        {
-            decryptedString += character;
-        }
-        else
-        {
-            decryptedString += (character - key[numberOfCharacterInKey] + 26) % 26 + 'A';
-            numberOfCharacterInKey = (numberOfCharacterInKey + 1) % key.length();
-        }
+        decryptedString += (character - key[numberOfCharacterInKey] + 26) % 26 + 'A';
+        numberOfCharacterInKey = (numberOfCharacterInKey + 1) % key.length();
     }
     
     return decryptedString;

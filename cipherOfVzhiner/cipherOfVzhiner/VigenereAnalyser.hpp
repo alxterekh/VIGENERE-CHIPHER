@@ -16,19 +16,20 @@
 
 using namespace std;
 
-typedef array<pair<char, double>, 26> FreqArray;
+typedef array <pair <char, double>, 26> frequencies;
 
 class VigenereAnalyser
 {
     private:
-        array<double, 26> targets;
-        array<double, 26> sortedTargets;
-        FreqArray freq;
+        array <double, 26> targets;
+        array <double, 26> sortedTargets;
+        frequencies freq;
     
-        FreqArray& frequency(const string& input);
+        frequencies& frequency(const string& input);
         double correlation(const string& input);
+        string leadToUppercase(string input);
     
     public:
-        VigenereAnalyser(const array<double, 26>& targetFreqs);
-        pair<string, string> analyze(string input);
+        VigenereAnalyser(const array <double, 26> &targetFreqs);
+        pair <string, string> analyze(string input);
 };
