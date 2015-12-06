@@ -10,62 +10,77 @@
 
 Vigenere:: Vigenere (string key)
 {
-    for(int i = 0; i < key.size(); ++i)
+    for(int numberOfCharacterInKey = 0; numberOfCharacterInKey < key.size(); ++numberOfCharacterInKey)
     {
-        if (key[i] >= 'A' && key[i] <= 'Z')
+        if (key[numberOfCharacterInKey] >= 'A' && key[numberOfCharacterInKey] <= 'Z')
         {
-            this->key += key[i];
+            this->key += key[numberOfCharacterInKey];
         }
-        else if (key[i] >= 'a' && key[i] <= 'z')
+        else if (key[numberOfCharacterInKey] >= 'a' && key[numberOfCharacterInKey] <= 'z')
         {
-            this->key += key[i] + 'A' - 'a';
+            this->key += key[numberOfCharacterInKey] + 'A' - 'a';
         }
     }
 }
 
 string Vigenere:: encrypt(string text)
 {
-    string out;
-    int j = 0;
-    for(int i = 0; i < text.length(); ++i)
+    char character;
+    string encryptedString;
+    int numberOfCharacterInKey = 0;
+    
+    for(int numberOfCharacterInText = 0; numberOfCharacterInText < text.length(); ++numberOfCharacterInText)
     {
-        char c = text[i];
-        
-        if(c >= 'a' && c <= 'z')
+        character = text[numberOfCharacterInText];
+        if(character >= 'a' && character <= 'z')
         {
-            c += 'A' - 'a';
+            character += 'A' - 'a';
         }
-        else if(c < 'A' || c > 'Z')
+        else if((character < 'A' || character > 'Z') && character != ' ')
         {
             continue;
         }
-        out += (c + key[j] - 2*'A') % 26 + 'A';
-        j = (j + 1) % key.length();
+        if (character == ' ')
+        {
+            encryptedString += character;
+        }
+        else
+        {
+            encryptedString += (character + key[numberOfCharacterInKey] - 2*'A') % 26 + 'A';
+            numberOfCharacterInKey = (numberOfCharacterInKey + 1) % key.length();
+        }
     }
     
-    return out;
+    return encryptedString;
 }
 
 string Vigenere:: decrypt(string text)
 {
-    string out;
-    int j = 0;
-    for(int i = 0; i < text.length(); ++i)
+    char character;
+    string decryptedString;
+    int numberOfCharacterInKey = 0;
+    
+    for(int numberOfCharacterInText = 0; numberOfCharacterInText < text.length(); ++numberOfCharacterInText)
     {
-        char c = text[i];
-        
-        if(c >= 'a' && c <= 'z')
+        character = text[numberOfCharacterInText];
+        if(character >= 'a' && character <= 'z')
         {
-            c += 'A' - 'a';
+            character += 'A' - 'a';
         }
-        else if(c < 'A' || c > 'Z')
+        else if((character < 'A' || character > 'Z') && character != ' ')
         {
             continue;
         }
-        
-        out += (c - key[j] + 26) % 26 + 'A';
-        j = (j + 1) % key.length();
+        if (character == ' ')
+        {
+            decryptedString += character;
+        }
+        else
+        {
+            decryptedString += (character - key[numberOfCharacterInKey] + 26) % 26 + 'A';
+            numberOfCharacterInKey = (numberOfCharacterInKey + 1) % key.length();
+        }
     }
     
-    return out;
+    return decryptedString;
 }

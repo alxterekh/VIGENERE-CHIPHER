@@ -12,15 +12,16 @@
 
 int main()
 {
-    Vigenere cipher("krot");
+    Vigenere scrambler("KEY");
     
-    string original = "Beware the Jabberwock, my son! The jaws that bite, the claws that catch!";
-    string encrypted = cipher.encrypt(original);
-    string decrypted = cipher.decrypt(encrypted);
+    string original = "The Vigenère cipher is a method of encrypting alphabetic text by using a series of different Caesar ciphers based on the letters of a keyword";
+    string encrypted = scrambler.encrypt(original);
+    string decrypted = scrambler.decrypt(encrypted);
     
-    cout << original << endl;
+    cout << "Original: " <<original << endl;
     cout << "Encrypted: " << encrypted << endl;
     cout << "Decrypted: " << decrypted << endl;
+    
 
     string input =
     "MOMUD EKAPV TQEFM OEVHP AJMII CDCTI FGYAG JSPXY ALUYM NSMYH"

@@ -21,5 +21,3 @@ class Vigenere
         string encrypt(string text);
         string decrypt(string text);
 };
-
-
